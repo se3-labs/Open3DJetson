@@ -47,11 +47,11 @@ else()
             message(STATUS "GLIBC version ${glibc_version} found: Using "
                 "Google Filament binary.")
         else()
-            set(FILAMENT_URL
-                https://github.com/isl-org/open3d_downloads/releases/download/filament/filament-v1.9.19-linux-20.04.tgz)
-            set(FILAMENT_SHA256 c756fd76f5c6a40ca554f8c3cca424354a2a22ea6fce3c8ea893d4c4aa39514c)
-            message(STATUS "GLIBC version ${glibc_version} found: Using "
-                "Open3D Filament binary.")
+            # set(FILAMENT_URL https://github.com/isl-org/open3d_downloads/releases/download/filament/filament-v1.9.19-linux-20.04.tgz)
+            # set(FILAMENT_SHA256 c756fd76f5c6a40ca554f8c3cca424354a2a22ea6fce3c8ea893d4c4aa39514c)
+			# message(STATUS "GLIBC version ${glibc_version} found: Using Open3D Filament binary.")
+			set(FILAMENT_URL https://github.com/google/filament/releases/download/v1.25.2/filament-v1.25.2-linux.tgz)
+            message(STATUS "GLIBC version ${glibc_version} found: Using Google's Filament v1.25.2 binary.")
         endif()
     endif()
 
@@ -71,7 +71,7 @@ else()
         ext_filament
         PREFIX filament
         URL ${FILAMENT_URL}
-        URL_HASH SHA256=${FILAMENT_SHA256}
+        # URL_HASH SHA256=${FILAMENT_SHA256}
         DOWNLOAD_DIR "${OPEN3D_THIRD_PARTY_DOWNLOAD_DIR}/filament"
         UPDATE_COMMAND ""
         CONFIGURE_COMMAND ""
