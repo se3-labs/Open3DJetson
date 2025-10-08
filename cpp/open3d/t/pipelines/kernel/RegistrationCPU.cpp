@@ -50,8 +50,7 @@ static void ComputePosePointToPlaneKernelCPU(
                      ++workload_idx) {
 #else
     scalar_t *A_reduction = A_1x29.data();
-#pragma omp parallel for reduction(+ : A_reduction[ : 29]) schedule(static) \
-        num_threads(utility::EstimateMaxThreads())
+#pragma omp parallel for reduction(+ : A_reduction[:29]) schedule(static) num_threads(utility::EstimateMaxThreads())
     for (int workload_idx = 0; workload_idx < n; ++workload_idx) {
 #endif
                     scalar_t J_ij[6];
@@ -157,8 +156,7 @@ static void ComputePoseColoredICPKernelCPU(
                      ++workload_idx) {
 #else
     scalar_t *A_reduction = A_1x29.data();
-#pragma omp parallel for reduction(+ : A_reduction[ : 29]) schedule(static) \
-        num_threads(utility::EstimateMaxThreads())
+#pragma omp parallel for reduction(+ : A_reduction[:29]) schedule(static) num_threads(utility::EstimateMaxThreads())
     for (int workload_idx = 0; workload_idx < n; ++workload_idx) {
 #endif
                     scalar_t J_G[6] = {0}, J_I[6] = {0};
@@ -287,8 +285,7 @@ static void ComputePoseDopplerICPKernelCPU(
                      ++workload_idx) {
 #else
     scalar_t *A_reduction = A_1x29.data();
-#pragma omp parallel for reduction(+ : A_reduction[ : 29]) schedule(static) \
-        num_threads(utility::EstimateMaxThreads())
+#pragma omp parallel for reduction(+ : A_reduction[:29]) schedule(static) num_threads(utility::EstimateMaxThreads())
     for (int workload_idx = 0; workload_idx < n; ++workload_idx) {
 #endif
                     scalar_t J_G[6] = {0}, J_D[6] = {0};
@@ -597,8 +594,7 @@ void ComputeInformationMatrixKernelCPU(const scalar_t *target_points_ptr,
                      ++workload_idx) {
 #else
     scalar_t *A_reduction = AtA.data();
-#pragma omp parallel for reduction(+ : A_reduction[ : 21]) schedule(static) \
-        num_threads(utility::EstimateMaxThreads())
+#pragma omp parallel for reduction(+ : A_reduction[:21]) schedule(static) num_threads(utility::EstimateMaxThreads())
     for (int workload_idx = 0; workload_idx < n; workload_idx++) {
 #endif
                     scalar_t J_x[6] = {0}, J_y[6] = {0}, J_z[6] = {0};

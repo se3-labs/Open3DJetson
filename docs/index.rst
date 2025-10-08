@@ -26,7 +26,6 @@ Open3D: A Modern Library for 3D Data Processing
     arm
     sycl
     open3d_ml
-    poux_book
 
 .. toctree::
     :maxdepth: 2

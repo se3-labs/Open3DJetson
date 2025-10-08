@@ -20,37 +20,52 @@ void pybind_renderoption_declarations(py::module &m) {
             m, "RenderOption", "Defines rendering options for visualizer.");
     // This is a nested class, but now it's bind to the module
     // o3d.visualization.PointColorOption
-    py::native_enum<RenderOption::PointColorOption>(
-            m, "PointColorOption", "enum.Enum",
-            "Enum class for point color for ``PointCloud``.")
+    py::enum_<RenderOption::PointColorOption> enum_point_color_option(
+            m, "PointColorOption", py::arithmetic(), "PointColorOption");
+    enum_point_color_option.attr("__doc__") = docstring::static_property(
+            py::cpp_function([](py::handle arg) -> std::string {
+                return "Enum class for point color for ``PointCloud``.";
+            }),
+            py::none(), py::none(), "");
+    enum_point_color_option
             .value("Default", RenderOption::PointColorOption::Default)
             .value("Color", RenderOption::PointColorOption::Color)
             .value("XCoordinate", RenderOption::PointColorOption::XCoordinate)
             .value("YCoordinate", RenderOption::PointColorOption::YCoordinate)
             .value("ZCoordinate", RenderOption::PointColorOption::ZCoordinate)
             .value("Normal", RenderOption::PointColorOption::Normal)
-            .finalize();
+            .export_values();
     // This is a nested class, but now it's bind to the module
     // o3d.visualization.MeshShadeOption
-    py::native_enum<RenderOption::MeshShadeOption>(
-            m, "MeshShadeOption", "enum.Enum",
-            "Enum class for mesh shading for ``TriangleMesh``.")
+    py::enum_<RenderOption::MeshShadeOption> enum_mesh_shade_option(
+            m, "MeshShadeOption", py::arithmetic(), "MeshShadeOption");
+    enum_mesh_shade_option.attr("__doc__") = docstring::static_property(
+            py::cpp_function([](py::handle arg) -> std::string {
+                return "Enum class for mesh shading for ``TriangleMesh``.";
+            }),
+            py::none(), py::none(), "");
+    enum_mesh_shade_option
             .value("Default", RenderOption::MeshShadeOption::FlatShade)
             .value("Color", RenderOption::MeshShadeOption::SmoothShade)
-            .finalize();
+            .export_values();
 
     // This is a nested class, but now it's bind to the module
     // o3d.visualization.MeshColorOption
-    py::native_enum<RenderOption::MeshColorOption>(
-            m, "MeshColorOption", "enum.Enum",
-            "Enum class for color for ``TriangleMesh``.")
+    py::enum_<RenderOption::MeshColorOption> enum_mesh_clor_option(
+            m, "MeshColorOption", py::arithmetic(), "MeshColorOption");
+    enum_mesh_clor_option.attr("__doc__") = docstring::static_property(
+            py::cpp_function([](py::handle arg) -> std::string {
+                return "Enum class for color for ``TriangleMesh``.";
+            }),
+            py::none(), py::none(), "");
+    enum_mesh_clor_option
             .value("Default", RenderOption::MeshColorOption::Default)
             .value("Color", RenderOption::MeshColorOption::Color)
             .value("XCoordinate", RenderOption::MeshColorOption::XCoordinate)
             .value("YCoordinate", RenderOption::MeshColorOption::YCoordinate)
             .value("ZCoordinate", RenderOption::MeshColorOption::ZCoordinate)
             .value("Normal", RenderOption::MeshColorOption::Normal)
-            .finalize();
+            .export_values();
 }
 void pybind_renderoption_definitions(py::module &m) {
     // open3d.visualization.RenderOption

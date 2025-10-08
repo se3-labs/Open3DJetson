@@ -18,12 +18,11 @@ void pybind_core_device_declarations(py::module &m) {
     py::class_<Device> device(
             m, "Device",
             "Device context specifying device type and device id.");
-    py::native_enum<Device::DeviceType>(device, "DeviceType", "enum.Enum")
+    py::enum_<Device::DeviceType>(device, "DeviceType")
             .value("CPU", Device::DeviceType::CPU)
             .value("CUDA", Device::DeviceType::CUDA)
             .value("SYCL", Device::DeviceType::SYCL)
-            .export_values()
-            .finalize();
+            .export_values();
 }
 void pybind_core_device_definitions(py::module &m) {
     auto device = static_cast<py::class_<Device>>(m.attr("Device"));

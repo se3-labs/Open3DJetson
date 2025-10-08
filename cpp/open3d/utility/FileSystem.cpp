@@ -13,7 +13,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <sstream>
-#ifdef _WIN32
+#ifdef WIN32
 #include <direct.h>
 #include <dirent/dirent.h>
 #include <io.h>
@@ -28,7 +28,7 @@
 #include <unistd.h>
 #endif
 
-#ifdef _WIN32
+#ifdef WIN32
 #define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
 #endif
 #ifdef __APPLE__
@@ -55,7 +55,7 @@ static std::string GetEnvVar(const std::string &env_var) {
 
 std::string GetHomeDirectory() {
     std::string home_dir = "";
-#ifdef _WIN32
+#ifdef WINDOWS
     // %USERPROFILE%
     // %HOMEDRIVE%
     // %HOMEPATH%
@@ -235,7 +235,7 @@ bool DirectoryIsEmpty(const std::string &directory) {
 }
 
 bool MakeDirectory(const std::string &directory) {
-#ifdef _WIN32
+#ifdef WINDOWS
     return (_mkdir(directory.c_str()) == 0);
 #else
     return (mkdir(directory.c_str(), S_IRWXU) == 0);
@@ -395,7 +395,7 @@ std::string GetIOErrorString(const int errnoVal) {
         // Error below could be EWOULDBLOCK on Linux
         case EAGAIN:
             return "Resource unavailable, try again";
-#if !defined(_WIN32)
+#if !defined(WIN32)
         case EDQUOT:
             return "Over quota";
 #endif

@@ -58,15 +58,13 @@ void pybind_image_declarations(py::module &m) {
             image(m, "Image", py::buffer_protocol(),
                   "The Image class stores image with customizable rols, cols, "
                   "channels, dtype and device.");
-    py::native_enum<Image::InterpType>(m, "InterpType", "enum.Enum",
-                                       "Interpolation type.")
+    py::enum_<Image::InterpType>(m, "InterpType", "Interpolation type.")
             .value("Nearest", Image::InterpType::Nearest)
             .value("Linear", Image::InterpType::Linear)
             .value("Cubic", Image::InterpType::Cubic)
             .value("Lanczos", Image::InterpType::Lanczos)
             .value("Super", Image::InterpType::Super)
-            .export_values()
-            .finalize();
+            .export_values();
     py::class_<RGBDImage, PyGeometry<RGBDImage>, std::shared_ptr<RGBDImage>,
                Geometry>
             rgbd_image(

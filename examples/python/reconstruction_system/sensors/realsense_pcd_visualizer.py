@@ -18,7 +18,6 @@ import open3d as o3d
 
 from os.path import abspath
 import sys
-
 sys.path.append(abspath(__file__))
 from realsense_helper import get_profiles
 

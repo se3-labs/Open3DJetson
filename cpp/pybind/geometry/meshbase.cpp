@@ -22,18 +22,15 @@ void pybind_meshbase_declarations(py::module &m) {
                      "MeshBase class. Triangle mesh contains vertices. "
                      "Optionally, the mesh "
                      "may also contain vertex normals and vertex colors.");
-    py::native_enum<MeshBase::SimplificationContraction>(
-            m, "SimplificationContraction", "enum.Enum",
-            "Method for mesh simplification contraction.")
+    py::enum_<MeshBase::SimplificationContraction>(m,
+                                                   "SimplificationContraction")
             .value("Average", MeshBase::SimplificationContraction::Average,
                    "The vertex positions are computed by the averaging.")
             .value("Quadric", MeshBase::SimplificationContraction::Quadric,
                    "The vertex positions are computed by minimizing the "
                    "distance to the adjacent triangle planes.")
-            .export_values()
-            .finalize();
-    py::native_enum<MeshBase::FilterScope>(m, "FilterScope", "enum.Enum",
-                                           "Scope for mesh filtering.")
+            .export_values();
+    py::enum_<MeshBase::FilterScope>(m, "FilterScope")
             .value("All", MeshBase::FilterScope::All,
                    "All properties (color, normal, vertex position) are "
                    "filtered.")
@@ -43,19 +40,16 @@ void pybind_meshbase_declarations(py::module &m) {
                    "Only the normal values are filtered.")
             .value("Vertex", MeshBase::FilterScope::Vertex,
                    "Only the vertex positions are filtered.")
-            .export_values()
-            .finalize();
-    py::native_enum<MeshBase::DeformAsRigidAsPossibleEnergy>(
-            m, "DeformAsRigidAsPossibleEnergy", "enum.Enum",
-            "Energy model for the as-rigid-as-possible mesh deformation.")
+            .export_values();
+    py::enum_<MeshBase::DeformAsRigidAsPossibleEnergy>(
+            m, "DeformAsRigidAsPossibleEnergy")
             .value("Spokes", MeshBase::DeformAsRigidAsPossibleEnergy::Spokes,
-                   "Is the original energy as formulated in orkine and Alexa, "
+                   "is the original energy as formulated in orkine and Alexa, "
                    "\"As-Rigid-As-Possible Surface Modeling\", 2007.")
             .value("Smoothed",
                    MeshBase::DeformAsRigidAsPossibleEnergy::Smoothed,
-                   "Adds a rotation smoothing term to the rotations.")
-            .export_values()
-            .finalize();
+                   "adds a rotation smoothing term to the rotations.")
+            .export_values();
 }
 
 void pybind_meshbase_definitions(py::module &m) {

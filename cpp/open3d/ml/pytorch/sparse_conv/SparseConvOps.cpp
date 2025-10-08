@@ -6,6 +6,8 @@
 // ----------------------------------------------------------------------------
 //
 
+#include <torch/script.h>
+
 #include <vector>
 
 #include "open3d/ml/pytorch/TorchHelper.h"
